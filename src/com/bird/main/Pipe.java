@@ -1,13 +1,14 @@
-package com.kingyu.flappybird.component;
+package com.bird.main;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-import com.kingyu.flappybird.util.Constant;
-import com.kingyu.flappybird.util.GameUtil;
+import com.bird.util.Constant;
+import com.bird.util.GameUtil;
 
 /**
- * 水管类，实现水管的绘制与运动逻辑
+ * 水管类
  *
  * @author Kingyu
  */
@@ -42,13 +43,14 @@ public class Pipe {
     public static final int TYPE_HOVER_HARD = 5;
 
     // 水管的速度
+    public static final int SPEED = 1;
     int speed;
 
     Rectangle pipeRect; // 水管的碰撞矩形
 
     // 构造器
     public Pipe() {
-        this.speed = Constant.GAME_SPEED;
+        this.speed = SPEED;
         this.width = PIPE_WIDTH;
 
         pipeRect = new Rectangle();
@@ -108,7 +110,7 @@ public class Pipe {
         if (bird.isDead()) {
             return;
         }
-        movement();
+        pipeLogic();
     }
 
     // 绘制从上往下的普通水管
@@ -155,7 +157,7 @@ public class Pipe {
     /**
      * 普通水管的运动逻辑
      */
-    private void movement() {
+    private void pipeLogic() {
         x -= speed;
         pipeRect.x -= speed;
         if (x < -1 * PIPE_HEAD_WIDTH) {// 水管完全离开了窗口
@@ -181,5 +183,26 @@ public class Pipe {
     public Rectangle getPipeRect() {
         return pipeRect;
     }
+
+    // 各参数的写入与获取
+//  public void setX(int x) {
+//      this.x = x;
+//  }
+//
+//  public void setY(int y) {
+//      this.y = y;
+//  }
+//
+//  public void setType(int type) {
+//      this.type = type;
+//  }
+//
+//  public void setHeight(int height) {
+//      this.height = height;
+//  }
+//
+//  public void setVisible(boolean visible) {
+//      this.visible = visible;
+//  }
 
 }

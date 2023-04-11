@@ -1,12 +1,10 @@
-package com.kingyu.flappybird.component;
-
-import com.kingyu.flappybird.util.Constant;
+package com.bird.main;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 /**
- * 云朵类，实现云朵的绘制和运动逻辑
+ * 云朵类
  *
  * @author Kingyu
  */
@@ -27,7 +25,7 @@ public class Cloud {
         this.img = img;
         this.x = x;
         this.y = y;
-        this.speed = Constant.GAME_SPEED * 2; //云朵的速度
+        this.speed = 2; //云朵的速度
         // 云朵图片缩放的比例 1.0~2.0
         double scale = 1 + Math.random(); // Math.random()返回0.0~1.0的随机值
         // 缩放云朵图片

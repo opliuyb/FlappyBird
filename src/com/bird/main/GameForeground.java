@@ -1,26 +1,29 @@
-package com.kingyu.flappybird.component;
+package com.bird.main;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.kingyu.flappybird.util.Constant;
-import com.kingyu.flappybird.util.GameUtil;
+import com.bird.util.Constant;
+import com.bird.util.GameUtil;
 
 /**
- * 前景层，目前管理云朵的生成逻辑并绘制容器中的云朵
+ * 前景类， 游戏中的遮挡层 包含多朵云
  *
  * @author Kingyu
  */
 public class GameForeground {
     private final List<Cloud> clouds; // 云朵的容器
+
     private final BufferedImage[] cloudImages; // 图片资源
+
     private long time; // 控制云的逻辑运算周期
     public static final int CLOUD_INTERVAL = 100; //云朵刷新的逻辑运算的周期
 
     public GameForeground() {
         clouds = new ArrayList<>(); //云朵的容器
+
         // 读入图片资源
         cloudImages = new BufferedImage[Constant.CLOUD_IMAGE_COUNT];
         for (int i = 0; i < Constant.CLOUD_IMAGE_COUNT; i++) {
@@ -31,14 +34,14 @@ public class GameForeground {
 
     // 绘制方法
     public void draw(Graphics g, Bird bird) {
-        cloudBornLogic();
+        cloudLogic();
         for (Cloud cloud : clouds) {
             cloud.draw(g, bird);
         }
     }
 
     // 云朵的控制
-    private void cloudBornLogic() {
+    private void cloudLogic() {
         // 100ms运算一次
         if (System.currentTimeMillis() - time > CLOUD_INTERVAL) {
             time = System.currentTimeMillis(); // 重置time
@@ -71,6 +74,7 @@ public class GameForeground {
                     i--;
                 }
             }
+
         }
     }
 }
